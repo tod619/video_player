@@ -28,6 +28,10 @@ function togglePlay() {
 
 // Progress Bar ---------------------------------- //
 
+// Update progress bar as the vidfeo plays
+function updateProgress() {
+    progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`
+}
 
 
 // Volume Controls --------------------------- //
@@ -49,3 +53,7 @@ video.addEventListener('click',togglePlay)
 
 // On video end show play Icon
 video.addEventListener('ended',showPlayIcon)
+
+// Update progress bar
+video.addEventListener('timeupdate',updateProgress)
+video.addEventListener('canplay', updateProgress)
