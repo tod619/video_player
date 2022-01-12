@@ -51,7 +51,6 @@ function setProgress(e) {
     video.currentTime = newTime * video.duration
 }
 
-
 // Volume Controls --------------------------- //
 
 
