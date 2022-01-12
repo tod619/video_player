@@ -36,11 +36,19 @@ function displayTime(time) {
     return `${minutes}:${seconds}` 
 }
 
-// Update progress bar as the vidfeo plays
+// Update progress bar as the video plays
 function updateProgress() {
     progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`
     currentTime.textContent = `${displayTime(video.currentTime)} /`
     duration.textContent = `${displayTime(video.duration)}`
+}
+
+// Allow user to seek a certain part of the video by clicking on the progress bar
+function setProgress(e) {
+    const newTime = e.offsetX / progressRange.offsetWidth
+    //console.log(newTime)
+    progressBar.style.width = `${newTime * 100}%`
+    video.currentTime = newTime * video.duration
 }
 
 
@@ -67,3 +75,6 @@ video.addEventListener('ended',showPlayIcon)
 // Update progress bar
 video.addEventListener('timeupdate',updateProgress)
 video.addEventListener('canplay', updateProgress)
+
+// Seek using the progress bar
+progressRange.addEventListener('click', setProgress)
