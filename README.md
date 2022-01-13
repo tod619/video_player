@@ -1,6 +1,6 @@
 # video_player
 
-![project image](project-image.png)
+![project image](project-image.PNG)
 
 ## Description
 
