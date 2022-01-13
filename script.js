@@ -52,6 +52,7 @@ function setProgress(e) {
 }
 
 // Volume Controls --------------------------- //
+let lastVolume = 1
 
 // Update sound on volume bar click
 function changeVolume(e) {
@@ -78,8 +79,21 @@ function changeVolume(e) {
     }else if (volume === 0) {
         volumeIcon.classList.add('fas', 'fa-volume-off')
     }
+
+    lastVolume = volume
 } 
 
+// Mute/Unmute volume
+function toggleMute() {
+    if(video.volume) {
+        lastVolume = video.volume
+        video.volume = 0
+        volumeBar.style.width = 0
+    } else {
+        video.volume = lastVolume
+        volumeBar.style.width = `${lastVolume * 100}%`
+    }
+}
 
 // Change Playback Speed -------------------- //
 
@@ -106,3 +120,6 @@ progressRange.addEventListener('click', setProgress)
 
 // Change the volume using volume slider
 volumeRange.addEventListener('click', changeVolume)
+
+// Mute/unmute by clicking on volume icon
+volumeIcon.addEventListener('click', toggleMute)
